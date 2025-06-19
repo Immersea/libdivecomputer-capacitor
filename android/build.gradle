@@ -1,3 +1,16 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:8.2.1"
+    }
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
+
 ext {
     junitVersion = project.hasProperty('junitVersion') ? rootProject.ext.junitVersion : '4.13.2'
     androidxAppCompatVersion = project.hasProperty('androidxAppCompatVersion') ? rootProject.ext.androidxAppCompatVersion : '1.7.0'
@@ -5,27 +18,39 @@ ext {
     androidxEspressoCoreVersion = project.hasProperty('androidxEspressoCoreVersion') ? rootProject.ext.androidxEspressoCoreVersion : '3.6.1'
 }
 
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:8.7.2'
-    }
-}
-
-apply plugin: 'com.android.library'
 
 android {
     namespace "it.immersea.libdivecomputerplugin"
     compileSdk project.hasProperty('compileSdkVersion') ? rootProject.ext.compileSdkVersion : 35
+
     defaultConfig {
         minSdkVersion project.hasProperty('minSdkVersion') ? rootProject.ext.minSdkVersion : 23
         targetSdkVersion project.hasProperty('targetSdkVersion') ? rootProject.ext.targetSdkVersion : 35
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        externalNativeBuild {
+            cmake {
+                cppFlags ""
+            }
+        }
+        // Restrict to ARM64-v8a ABI
+        ndk {
+            abiFilters "arm64-v8a"
+        }
+    }
+    //Configure CMake for native plugin code
+    externalNativeBuild {
+        cmake {
+            // point to the plugin’s CMakeLists.txt inside src/main/cpp
+            path file("src/main/cpp/CMakeLists.txt")
+        }
+    }
+    // Ensure Gradle picks up any prebuilt .so in jniLibs
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['src/main/jniLibs']
+        }
     }
     buildTypes {
         release {
@@ -36,9 +61,32 @@ android {
     lintOptions {
         abortOnError false
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_21
-        targetCompatibility JavaVersion.VERSION_21
+}
+
+androidComponents {
+    beforeVariants(selector().all()) {
+        it.enable = it.name in ["release", "debug"]
+    }
+}
+
+publishing {
+    publications {
+        release(MavenPublication) {
+            afterEvaluate {
+                from components.findByName("release")
+            }
+            groupId = "it.immersea"
+            artifactId = "libdivecomputer"
+            version = "1.0.0"
+        }
+        debug(MavenPublication) {
+            afterEvaluate {
+                from components.findByName("debug")
+            }
+            groupId = "it.immersea"
+            artifactId = "libdivecomputer-debug"
+            version = "1.0.0"
+        }
     }
 }
 
@@ -50,7 +98,6 @@ repositories {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(':capacitor-android')
     implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"

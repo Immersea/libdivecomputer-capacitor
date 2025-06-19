@@ -1,23 +1,17 @@
-import Foundation
 import Capacitor
 
-/**
- * Please read the Capacitor iOS Plugin Development Guide
- * here: https://capacitorjs.com/docs/plugins/ios
- */
-@objc(libdcPlugin)
-public class libdcPlugin: CAPPlugin, CAPBridgedPlugin {
-    public let identifier = "libdcPlugin"
-    public let jsName = "libdc"
-    public let pluginMethods: [CAPPluginMethod] = [
-        CAPPluginMethod(name: "echo", returnType: CAPPluginReturnPromise)
-    ]
-    private let implementation = libdc()
+@objc(LibDiveComputerPlugin)
+public class LibDiveComputerPlugin: CAPPlugin {
+    private let wrapper = LibDiveComputerWrapper()
 
-    @objc func echo(_ call: CAPPluginCall) {
-        let value = call.getString("value") ?? ""
+    @objc func createContext(_ call: CAPPluginCall) {
+        let ctxNumber = wrapper.createContext()
         call.resolve([
-            "value": implementation.echo(value)
+            "ctxPtr": ctxNumber.uint64Value
         ])
     }
+
+    // Add other @objc methods as needed, e.g.:
+    // @objc func openDevice(_ call: CAPPluginCall) { … }
+    // @objc func downloadData(_ call: CAPPluginCall) { … }
 }

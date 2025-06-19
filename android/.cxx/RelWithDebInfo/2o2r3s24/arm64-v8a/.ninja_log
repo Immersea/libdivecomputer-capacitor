@@ -1,0 +1,7 @@
+# ninja log v5
+0	30	1750321866729858281	CMakeFiles/divecomputerplugin.dir/libdivecomputer_jni.cpp.o	551798c8f49da9bf
+30	72	1750321866771481687	/Users/lucapalezza/aruba/Developement/lib-dive-computer-plugin/android/build/intermediates/cxx/RelWithDebInfo/2o2r3s24/obj/arm64-v8a/libdivecomputerplugin.so	e56a05faf8ba0916
+0	5	0	clean	b6a05344cd29ded9
+0	5	0	clean	b6a05344cd29ded9
+0	6	0	clean	b6a05344cd29ded9
+0	5	0	clean	b6a05344cd29ded9

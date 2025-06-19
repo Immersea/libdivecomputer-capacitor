@@ -1,25 +1,27 @@
 {
   "name": "lib-dive-computer-plugin",
-  "version": "0.0.1",
+  "version": "1.0.2",
   "description": "Wrapper Capacitor per libdc (libdivecomputer)",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
   "unpkg": "dist/plugin.js",
   "files": [
-    "android/src/main/",
-    "android/build.gradle",
-    "dist/",
+    "plugin.xml",
     "ios/Sources",
-    "ios/Tests",
-    "Package.swift",
+    "ios/libdc/include/**/*",
+    "ios/libdc/src/**/*",
+    "ios/libdc/version.h",
+    "ios/libdc/revision.h",
+    "android/src/main",
+    "dist",
     "LibDiveComputerPlugin.podspec"
   ],
   "author": "Immersea srl",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Immersea/libdivecomputer-capacitor.git.git"
+    "url": "git+https://github.com/Immersea/libdivecomputer-capacitor.git"
   },
   "bugs": {
     "url": "https://github.com/Immersea/libdivecomputer-capacitor.git/issues"
@@ -43,10 +45,11 @@
     "build": "npm run clean && npm run docgen && tsc && rollup -c rollup.config.mjs",
     "clean": "rimraf ./dist",
     "watch": "tsc --watch",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "update": "cd ios/libdc && git clone https://github.com/libdivecomputer/libdivecomputer.git libdc && autoreconf --install && ./configure"
   },
   "devDependencies": {
-    "@capacitor/android": "^7.0.0",
+    "@capacitor/android": "^7.4.0",
     "@capacitor/core": "^7.0.0",
     "@capacitor/docgen": "^0.3.0",
     "@capacitor/ios": "^7.0.0",
@@ -76,5 +79,8 @@
     "android": {
       "src": "android"
     }
+  },
+  "dependencies": {
+    "lib-dive-computer-plugin": "file:lib-dive-computer-plugin-1.0.2.tgz"
   }
 }

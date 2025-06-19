@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/Users/lucapalezza/aruba/Developement/lib-dive-computer-plugin/android/.cxx/Debug/4ze2s2k4/arm64-v8a",
+  "command": "/Users/lucapalezza/Library/Android/sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=aarch64-none-linux-android23 --sysroot=/Users/lucapalezza/Library/Android/sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -Ddivecomputerplugin_EXPORTS -I/Users/lucapalezza/aruba/Developement/lib-dive-computer-plugin/android/src/main/cpp/../jniLibs/arm64-v8a/include -I/Users/lucapalezza/aruba/Developement/lib-dive-computer-plugin/android/src/main/cpp/libdc/include -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -fno-limit-debug-info  -fPIC -o CMakeFiles/divecomputerplugin.dir/libdivecomputer_jni.cpp.o -c /Users/lucapalezza/aruba/Developement/lib-dive-computer-plugin/android/src/main/cpp/libdivecomputer_jni.cpp",
+  "file": "/Users/lucapalezza/aruba/Developement/lib-dive-computer-plugin/android/src/main/cpp/libdivecomputer_jni.cpp"
+}
+]

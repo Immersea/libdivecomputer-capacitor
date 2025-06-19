@@ -1,0 +1,6 @@
+[
+	{
+		"pkg": "lib-dive-computer-plugin",
+		"classpath": "it.immersea.libdivecomputerplugin.LibDiveComputerPlugin"
+	}
+]

@@ -1,0 +1,25 @@
+<plugin id="it.immersea.libdivecomputerplugin"
+        name="lib-dive-computer-plugin"
+        version="1.0.0"
+        spec="npm:lib-dive-computer-plugin">
+  <!-- JS entrypoint -->
+  <js-module src="dist/esm/index.js" name="libdcPlugin">
+    <clobbers target="Plugins.libdcPlugin" />
+  </js-module>
+
+  <!-- Android -->
+  <platform name="android">
+    <source-file src="android/src/main/java/it/immersea/libdivecomputerplugin/LibDiveComputerPluginBridge.java"
+                target-dir="src/main/java/it/immersea/libdivecomputerplugin" />
+    <source-file src="android/src/main/java/it/immersea/libdivecomputerplugin/LibDiveComputerPlugin.java"
+                target-dir="src/main/java/it/immersea/libdivecomputerplugin" />
+  </platform>
+
+  <!-- iOS -->
+  <platform name="ios">
+    <podspec src="LibDiveComputerPlugin.podspec" />
+    <source-file src="ios/Sources/LibDiveComputerPlugin/LibDiveComputerPlugin.swift" />
+    <source-file src="ios/Sources/LibDiveComputerPlugin/LibDiveComputerWrapper.h" />
+    <source-file src="ios/Sources/LibDiveComputerPlugin/LibDiveComputerWrapper.m" />
+  </platform>
+</plugin>
