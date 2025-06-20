@@ -18,3 +18,6 @@
 0	6	0	clean	b6a05344cd29ded9
 1	32	1750322627738731304	CMakeFiles/divecomputerplugin.dir/libdivecomputer_jni.cpp.o	dd98016124e382a3
 32	76	1750322627781990273	/Users/lucapalezza/aruba/Developement/lib-dive-computer-plugin/android/build/intermediates/cxx/Debug/4ze2s2k4/obj/arm64-v8a/libdivecomputerplugin.so	4beb6d811024a3cf
+0	5	0	clean	b6a05344cd29ded9
+4	167	1750324310846494707	CMakeFiles/divecomputerplugin.dir/libdivecomputer_jni.cpp.o	dd98016124e382a3
+167	282	1750324310960809389	/Users/lucapalezza/aruba/Developement/lib-dive-computer-plugin/android/build/intermediates/cxx/Debug/4ze2s2k4/obj/arm64-v8a/libdivecomputerplugin.so	4beb6d811024a3cf
